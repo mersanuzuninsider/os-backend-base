@@ -1,0 +1,13 @@
+const app = require('../app');
+const logger = require('../lib/logger');
+const sequelize = require('../lib/db/sequelize');
+
+
+const PORT = process.env.PORT || 3000;
+const isForce = process.env.NODE_ENV !== 'prod' && process.env.IS_DB_SYNC_FORCE === 'true';
+
+sequelize.sync({force: isForce}).then(() => {
+  app.listen(PORT, () => {
+    logger.info(`Server listening on http://localhost:${PORT}/`);
+  });
+});
