@@ -11,7 +11,7 @@ services:
     environment:
       - NODE_ENV=develop
     ports:
-      - "9876:9876"
+      - "3000:3000"
     depends_on:
       - postgres
   postgres:
